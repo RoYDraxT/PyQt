@@ -554,7 +554,7 @@ QPushButton:hover {
                   </property>
                   <item>
                    <property name="text">
-                    <string>Todos</string>
+                    <string>---</string>
                    </property>
                   </item>
                   <item>
@@ -661,15 +661,140 @@ QPushButton:hover {
                  <widget class="QComboBox" name="departamento_box">
                   <property name="geometry">
                    <rect>
-                    <x>140</x>
+                    <x>130</x>
                     <y>250</y>
-                    <width>81</width>
+                    <width>111</width>
                     <height>20</height>
                    </rect>
                   </property>
                   <item>
                    <property name="text">
-                    <string>Todos</string>
+                    <string>---</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Amazonas</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Ancash</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Apurimac</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Arequipa</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Ayacucho</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Cajamarca</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Callao</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Cusco</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Huancavelica</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Huanuco</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Ica</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Junin</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>La Libertad</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Lambayeque</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Lima</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Loreto</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Madre De Dios</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Moquegua</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Pasco</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Piura</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Puno</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>San Martin</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Tacna</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Tumbes</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Ucayali</string>
                    </property>
                   </item>
                  </widget>
@@ -739,9 +864,9 @@ QPushButton:hover {
                  <property name="geometry">
                   <rect>
                    <x>260</x>
-                   <y>210</y>
-                   <width>301</width>
-                   <height>231</height>
+                   <y>250</y>
+                   <width>211</width>
+                   <height>191</height>
                   </rect>
                  </property>
                  <property name="frameShape">
@@ -768,8 +893,8 @@ QPushButton:hover {
                    <rect>
                     <x>10</x>
                     <y>40</y>
-                    <width>281</width>
-                    <height>181</height>
+                    <width>191</width>
+                    <height>141</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="grafica_box"/>
@@ -801,8 +926,8 @@ QPushButton:hover {
                   <rect>
                    <x>270</x>
                    <y>40</y>
-                   <width>291</width>
-                   <height>161</height>
+                   <width>461</width>
+                   <height>201</height>
                   </rect>
                  </property>
                  <property name="frameShape">
@@ -816,9 +941,20 @@ QPushButton:hover {
                    <rect>
                     <x>10</x>
                     <y>10</y>
-                    <width>261</width>
-                    <height>141</height>
+                    <width>441</width>
+                    <height>181</height>
                    </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QFrame {
+    background-color: rgb(255,255,255);
+    border-radius: 15px; /* Para esquinas redondeadas */
+}</string>
                   </property>
                   <property name="plainText">
                    <string/>

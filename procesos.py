@@ -1,5 +1,11 @@
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
+
+# Lectura de datos
 def cargar_datos(archivo='Residuos2024.xlsx'):
     """
     Carga los datos desde un archivo Excel.
@@ -20,76 +26,64 @@ def cargar_datos(archivo='Residuos2024.xlsx'):
         print(f"Ocurrió un error: {e}")
         return None
     
-datos = cargar_datos(archivo="Residuos2024.xlsx")
-
-def calcular_promedio_residuos_por_habitante(datos):
+def transformar_datos(datos):
     """
-    Calcula el promedio de residuos anuales por habitante en cada distrito.
-
+    Transforma los datos eliminando columnas irrelevantes y agrupando por DEPARTAMENTO.
+    
     Args:
-        datos (list of list): Lista de datos donde cada fila contiene:
-            [Departamento, Provincia, Distrito, Población, ResiduosAnuales].
+        datos (list of list): Lista de listas con los datos.
 
     Returns:
-        list: Una lista de diccionarios con el promedio de residuos por habitante para cada distrito.
+        list of list: Lista de listas con los datos agrupados por DEPARTAMENTO.
     """
-    resultados = []
-    for fila in datos:
-        departamento, provincia, distrito, poblacion, residuos_anuales = fila
-        if poblacion > 0:  # Evita divisiones por cero
-            promedio = round(residuos_anuales / poblacion, 2)
-            resultados.append({
-                "Departamento": departamento,
-                "Provincia": provincia,
-                "Distrito": distrito,
-                "Promedio por Habitante": promedio
-            })
-        else:
-            resultados.append({
-                "Departamento": departamento,
-                "Provincia": provincia,
-                "Distrito": distrito,
-                "Promedio por Habitante": "N/A"
-            })
+    # Convertir la lista de listas a DataFrame para manipularlo fácilmente
+    columnas = ['FECHA_CORTE', 'N_SEC', 'UBIGEO', 'REG_NAT', 'DEPARTAMENTO', 'PROVINCIA', 'DISTRITO', 'POB_TOTAL', 'POB_URBANA', 'POB_RURAL', 'QRESIDUOS_DOM', 'PERIODO']
+    df = pd.DataFrame(datos, columns=columnas)
+
+    columnas_a_eliminar = ['FECHA_CORTE', 'N_SEC', 'UBIGEO', 'PROVINCIA', 'DISTRITO']
+    df = df.drop(columns=columnas_a_eliminar, errors='ignore')
+
+    df = df.dropna()
+
+    df_agrupado = df.groupby(['DEPARTAMENTO', 'PERIODO']).agg({
+        'POB_TOTAL': 'sum',
+        'POB_URBANA': 'sum',
+        'POB_RURAL': 'sum',
+        'QRESIDUOS_DOM': 'sum'
+    }).reset_index()
+
+    return df_agrupado
+
+def calcular_residuos_por_ano_seleccionado(datos_agrupados, año_seleccionado=None, departamento_seleccionado=None):
+    """
+    Calcula los residuos totales generados por año y departamento. Si no se selecciona un año específico, calcula el promedio.
     
-    return resultados
-
-def calcular_promedio_total_residuos(datos):
-    """
-    Calcula el promedio total de residuos anuales en todas las zonas.
-
     Args:
-        datos (list of list): Lista de datos donde cada fila contiene:
-            [Departamento, Provincia, Distrito, Población, ResiduosAnuales].
-
+        datos_agrupados (DataFrame): DataFrame con los datos agrupados por DEPARTAMENTO y PERIODO.
+        año_seleccionado (int, optional): Año específico seleccionado por el usuario. Si es None, se calcula para todos los años.
+        departamento_seleccionado (str, optional): Departamento específico seleccionado por el usuario. Si es None, se calcula para todos los departamentos.
+        
     Returns:
-        float: El promedio total de residuos anuales en todas las zonas.
+        float: Residuos totales para un año seleccionado o el promedio de residuos para todos los años y departamentos.
     """
-    total_residuos = 0
-    for fila in datos:
-        _, _, _, _, residuos_anuales = fila
-        total_residuos += residuos_anuales
-    
-    promedio_total_residuos = round(total_residuos / len(datos), 2) if len(datos) > 0 else 0
-    return promedio_total_residuos
+    if departamento_seleccionado is not None:
+        # Filtrar los datos por el departamento seleccionado
+        datos_agrupados = datos_agrupados[datos_agrupados['DEPARTAMENTO'] == departamento_seleccionado]
 
-def calcular_promedio_residuos_por_zona(datos):
-    """
-    Calcula el promedio de residuos anuales por zona.
-
-    Args:
-        datos (list of list): Lista de datos donde cada fila contiene:
-            [Departamento, Provincia, Distrito, Población, ResiduosAnuales].
-
-    Returns:
-        float: El promedio de residuos anuales por zona.
-    """
-    total_residuos = 0
-    num_zonas = len(datos)
-    
-    for fila in datos:
-        _, _, _, _, residuos_anuales = fila
-        total_residuos += residuos_anuales
-    
-    promedio_residuos_zona = round(total_residuos / num_zonas, 2) if num_zonas > 0 else 0
-    return promedio_residuos_zona
+    if año_seleccionado is not None:
+        # Filtrar los datos por el año seleccionado
+        residuos_por_ano = datos_agrupados[datos_agrupados['PERIODO'] == año_seleccionado]
+        
+        # Sumar los residuos de ese año y departamento
+        residuos_totales = residuos_por_ano['QRESIDUOS_DOM'].sum()
+        
+        return residuos_totales
+    else:
+        # Si no se seleccionó un año específico, calcular el promedio de residuos
+        residuos_totales = datos_agrupados['QRESIDUOS_DOM'].sum()
+        total_anos = len(datos_agrupados['PERIODO'].unique())
+        
+        # Calcular el promedio de residuos
+        promedio_residuos = round((residuos_totales / total_anos),2)
+        
+        return promedio_residuos
