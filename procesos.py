@@ -28,24 +28,27 @@ def cargar_datos(archivo='Residuos2024.xlsx'):
     
 def transformar_datos(datos):
     """
-    Transforma los datos eliminando columnas irrelevantes y agrupando por DEPARTAMENTO.
+    Transforma los datos eliminando columnas irrelevantes y agrupando por DEPARTAMENTO y REG_NAT.
     
     Args:
         datos (list of list): Lista de listas con los datos.
 
     Returns:
-        list of list: Lista de listas con los datos agrupados por DEPARTAMENTO.
+        DataFrame: DataFrame con los datos agrupados por DEPARTAMENTO y REG_NAT.
     """
     # Convertir la lista de listas a DataFrame para manipularlo fácilmente
     columnas = ['FECHA_CORTE', 'N_SEC', 'UBIGEO', 'REG_NAT', 'DEPARTAMENTO', 'PROVINCIA', 'DISTRITO', 'POB_TOTAL', 'POB_URBANA', 'POB_RURAL', 'QRESIDUOS_DOM', 'PERIODO']
     df = pd.DataFrame(datos, columns=columnas)
 
+    # Eliminar columnas irrelevantes
     columnas_a_eliminar = ['FECHA_CORTE', 'N_SEC', 'UBIGEO', 'PROVINCIA', 'DISTRITO']
     df = df.drop(columns=columnas_a_eliminar, errors='ignore')
 
+    # Eliminar filas con valores nulos
     df = df.dropna()
 
-    df_agrupado = df.groupby(['DEPARTAMENTO', 'PERIODO']).agg({
+    # Agrupar por DEPARTAMENTO y REG_NAT
+    df_agrupado = df.groupby(['REG_NAT', 'DEPARTAMENTO', 'PERIODO']).agg({
         'POB_TOTAL': 'sum',
         'POB_URBANA': 'sum',
         'POB_RURAL': 'sum',
@@ -87,3 +90,27 @@ def calcular_residuos_por_ano_seleccionado(datos_agrupados, año_seleccionado=No
         promedio_residuos = round((residuos_totales / total_anos),2)
         
         return promedio_residuos
+
+def calcular_residuos_por_region(datos_agrupados, regiones_seleccionadas, año_seleccionado=None):
+    """
+    Calcula los residuos totales generados por las regiones, con la opción de filtrar por año.
+
+    Args:
+        datos_agrupados (DataFrame): DataFrame con los datos agrupados por región y departamento.
+        regiones_seleccionadas (list): Lista de regiones seleccionadas.
+        año_seleccionado (int, optional): Año específico seleccionado. Si es None, no se filtra por año.
+
+    Returns:
+        DataFrame o float: Si se selecciona un año, devuelve el valor de residuos para ese año. Si no, no devuelve nada.
+    """
+    # Filtrar los datos por las regiones seleccionadas
+    datos_filtrados = round((datos_agrupados[datos_agrupados['REG_NAT'].isin(regiones_seleccionadas)]),2)
+
+    if año_seleccionado:
+        # Filtrar también por el año si se seleccionó un año específico
+        datos_filtrados = round((datos_filtrados[datos_filtrados['PERIODO'] == año_seleccionado]),2)
+
+    # Calcular los residuos totales para las regiones seleccionadas
+    residuos_totales = round((datos_filtrados['QRESIDUOS_DOM'].sum()),2)
+
+    return residuos_totales

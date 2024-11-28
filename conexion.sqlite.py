@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QComboBox, QListWidget, Q
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QTableWidgetItem
 from PyQtUI import Ui_MainWindow  # Importa la clase generada
-from procesos import transformar_datos, calcular_residuos_por_ano_seleccionado
+from procesos import transformar_datos, calcular_residuos_por_ano_seleccionado, calcular_residuos_por_region
 
 # Importar el archivo de lectura
 from procesos import cargar_datos
@@ -42,8 +42,6 @@ class MainApp(QMainWindow):
         # Desmarcar todos los checkboxes (incluyendo Sierra)
         self.ui.costa.setChecked(False)
         self.ui.selva.setChecked(False)
-        self.ui.rural.setChecked(False)
-        self.ui.urbana.setChecked(False)
         self.ui.sierra.setChecked(False)
 
         # Limpiar el cuadro de resultados
@@ -62,59 +60,120 @@ class MainApp(QMainWindow):
             # Obtener el departamento seleccionado de la interfaz y convertirlo a mayúsculas
             departamento_seleccionado = self.ui.departamento_box.currentText().upper()  # Convertir a mayúsculas
 
+            # Obtener el estado de los QCheckBox de las regiones
+            region_costa = self.ui.costa.isChecked()  # Verifica si Costa está seleccionada
+            region_sierra = self.ui.sierra.isChecked()  # Verifica si Sierra está seleccionada
+            region_selva = self.ui.selva.isChecked()  # Verifica si Selva está seleccionada
+
+            # Crear una lista de las regiones seleccionadas
+            regiones_seleccionadas = []
+            if region_costa:
+                regiones_seleccionadas.append("COSTA")
+            if region_sierra:
+                regiones_seleccionadas.append("SIERRA")
+            if region_selva:
+                regiones_seleccionadas.append("SELVA")
+
             # Obtener el año seleccionado de la interfaz y convertirlo a mayúsculas
             año_seleccionado = self.ui.anio_box.currentText().upper()  # Convertir a mayúsculas
 
             mensaje = ""  # Inicializar el mensaje
 
-            # Verificar si los parámetros fueron seleccionados correctamente
-            if departamento_seleccionado == "---" or año_seleccionado == "---":
-                mensaje = "No se establecieron correctamente los parámetros. Por favor seleccione un año y un departamento válidos."
-            else:
-                # Filtrar los datos según el año y el departamento seleccionado
-                if departamento_seleccionado == "TODOS":
-                    # Si 'TODOS' está seleccionado, no filtrar por departamento
-                    if año_seleccionado == "TODOS":
-                        # Si también 'TODOS' está seleccionado para los años
-                        mensaje = "Residuos totales para todos los años y todos los departamentos."
+            # Verificar si no se seleccionó ningún checkbox de región
+            if len(regiones_seleccionadas) > 0:
+                # Verificar si se ha seleccionado un departamento
+                if departamento_seleccionado != "---":
+                    mensaje = "No puedes seleccionar un departamento cuando estás analizando por regiones. Por favor, selecciona solo regiones o solo un departamento."
+                elif año_seleccionado == "---":
+                    mensaje = "Por favor seleccione un año válido."
+                else:
+                    # Filtrar los datos por las regiones seleccionadas
+                    datos_por_region = datos_transformados[datos_transformados['REG_NAT'].isin(regiones_seleccionadas)]
+
+                    # Filtrar los datos por el año seleccionado si es necesario
+                    if año_seleccionado != "---":
+                        datos_por_region = datos_por_region[datos_por_region['PERIODO'] == int(año_seleccionado)]
+
+                    # Calcular los residuos totales de las regiones seleccionadas
+                    residuos_totales = datos_por_region['QRESIDUOS_DOM'].sum()
+
+                    mensaje = f"Residuos Totales para las Regiones {', '.join(regiones_seleccionadas)}: {residuos_totales} toneladas.\n"
+
+                    # Calcular los residuos urbanos y rurales
+                    residuos_urbanos = datos_por_region['QRESIDUOS_DOM'].sum() * (datos_por_region['POB_URBANA'].sum() / datos_por_region['POB_TOTAL'].sum())
+                    residuos_rurales = datos_por_region['QRESIDUOS_DOM'].sum() * (datos_por_region['POB_RURAL'].sum() / datos_por_region['POB_TOTAL'].sum())
+
+                    # Calcular los porcentajes
+                    if residuos_totales > 0:
+                        porcentaje_urbano = (residuos_urbanos / residuos_totales) * 100
+                        porcentaje_rural = (residuos_rurales / residuos_totales) * 100
                     else:
-                        # Filtrar solo por año
+                        porcentaje_urbano = 0
+                        porcentaje_rural = 0
+
+                    # Agregar los porcentajes al mensaje
+                    mensaje += f"\nÁreas urbanas: {porcentaje_urbano:.2f}%."
+                    mensaje += f"\nÁreas rurales: {porcentaje_rural:.2f}%. "
+            else:
+                # Si no se seleccionaron regiones, continuar con el filtro por departamento
+                if (departamento_seleccionado == "---" or departamento_seleccionado == "TODOS") and año_seleccionado == "---":
+                    mensaje = "No se establecieron correctamente los parámetros. Por favor seleccione un año y un departamento o región válidos."
+                else:
+                    if departamento_seleccionado == "TODOS" and año_seleccionado != "---":
                         residuos_totales = calcular_residuos_por_ano_seleccionado(datos_transformados, int(año_seleccionado))
                         if residuos_totales is not None:
-                            mensaje = f"Residuos Totales para el Año {año_seleccionado}: {residuos_totales} toneladas.\n"
+                            mensaje = f"Residuos Totales para el Año {año_seleccionado}: {residuos_totales} toneladas."
                             if residuos_totales > 1500000:
-                                mensaje += "Se necesitan acciones para la implementación de un relleno sanitario, ya que el total de residuos se encuentran en estado crítico."
+                                mensaje += "\nSe necesitan acciones para la implementación de un relleno sanitario, ya que el total de residuos se encuentran en estado crítico.\n"
                             else:
-                                mensaje += "La cantidad de residuos generados se encuentra dentro de los límites de salubridad adecuados."
+                                mensaje += "\nLa cantidad de residuos generados se encuentra dentro de los límites de salubridad adecuados.\n"
                         else:
                             mensaje = "Error al calcular los residuos para el año seleccionado."
-                else:
-                    # Filtrar por departamento seleccionado
-                    if año_seleccionado == "TODOS":
-                        # Si 'TODOS' está seleccionado para los años, solo filtrar por departamento
-                        residuos_por_departamento = datos_transformados[datos_transformados['DEPARTAMENTO'] == departamento_seleccionado]
-                        residuos_totales = residuos_por_departamento['QRESIDUOS_DOM'].sum()
-                        mensaje = f"Residuos Totales para el Departamento {departamento_seleccionado}: {residuos_totales} toneladas.\n"
-                        if residuos_totales > 1500000:
-                            mensaje += "Se necesitan acciones para la implementación de un relleno sanitario, ya que el total de residuos se encuentran en estado crítico."
+                    elif departamento_seleccionado != "---":
+                        if año_seleccionado == "TODOS":
+                            residuos_por_departamento = datos_transformados[datos_transformados['DEPARTAMENTO'] == departamento_seleccionado]
+                            residuos_totales = residuos_por_departamento['QRESIDUOS_DOM'].sum()
+                            mensaje = f"Residuos Totales para el Departamento {departamento_seleccionado}: {residuos_totales} toneladas.\n"
+                            if residuos_totales > 1500000:
+                                mensaje += "\nSe necesitan acciones para la implementación de un relleno sanitario, ya que el total de residuos se encuentran en estado crítico.\n"
+                            else:
+                                mensaje += "\nLa cantidad de residuos generados se encuentra dentro de los límites de salubridad adecuados.\n"
+                            
+                            # Calcular los porcentajes de residuos urbanos y rurales
+                            residuos_urbanos = residuos_por_departamento['QRESIDUOS_DOM'].sum() * (residuos_por_departamento['POB_URBANA'].sum() / residuos_por_departamento['POB_TOTAL'].sum())
+                            residuos_rurales = residuos_por_departamento['QRESIDUOS_DOM'].sum() * (residuos_por_departamento['POB_RURAL'].sum() / residuos_por_departamento['POB_TOTAL'].sum())
+                            
+                            # Calcular los porcentajes
+                            porcentaje_urbano = (residuos_urbanos / residuos_totales) * 100
+                            porcentaje_rural = (residuos_rurales / residuos_totales) * 100
+                            
+                            # Agregar los porcentajes al mensaje
+                            mensaje += f"\nÁreas urbanas: {porcentaje_urbano:.2f}%."
+                            mensaje += f"\nÁreas rurales: {porcentaje_rural:.2f}%. "
                         else:
-                            mensaje += "La cantidad de residuos generados se encuentra dentro de los límites de salubridad adecuados."
-                    else:
-                        # Filtrar por año y departamento seleccionado
-                        datos_filtrados = datos_transformados[(datos_transformados['DEPARTAMENTO'] == departamento_seleccionado) & 
-                                                            (datos_transformados['PERIODO'] == int(año_seleccionado))]
-                        residuos_totales = datos_filtrados['QRESIDUOS_DOM'].sum()
-                        mensaje = f"Residuos Totales para el Año {año_seleccionado} y el Departamento {departamento_seleccionado}: {residuos_totales} toneladas.\n"
-                        if residuos_totales > 1500000:
-                            mensaje += "Se necesitan acciones para la implementación de un relleno sanitario, ya que el total de residuos se encuentran en estado crítico."
-                        else:
-                            mensaje += "La cantidad de residuos generados se encuentra dentro de los límites de salubridad adecuados."
+                            datos_filtrados = datos_transformados[(datos_transformados['DEPARTAMENTO'] == departamento_seleccionado) & 
+                                                                (datos_transformados['PERIODO'] == int(año_seleccionado))]
+                            residuos_totales = datos_filtrados['QRESIDUOS_DOM'].sum()
+                            mensaje = f"Residuos Totales para el Año {año_seleccionado} y el Departamento {departamento_seleccionado}: {residuos_totales} toneladas.\n"
+                            if residuos_totales > 1500000:
+                                mensaje += "\nSe necesitan acciones para la implementación de un relleno sanitario, ya que el total de residuos se encuentran en estado crítico.\n"
+                            else:
+                                mensaje += "\nLa cantidad de residuos generados se encuentra dentro de los límites de salubridad adecuados.\n"
 
-            # Mostrar el mensaje en el campo de texto
+                            # Calcular los porcentajes de residuos urbanos y rurales
+                            residuos_urbanos = datos_filtrados['QRESIDUOS_DOM'].sum() * (datos_filtrados['POB_URBANA'].sum() / datos_filtrados['POB_TOTAL'].sum())
+                            residuos_rurales = datos_filtrados['QRESIDUOS_DOM'].sum() * (datos_filtrados['POB_RURAL'].sum() / datos_filtrados['POB_TOTAL'].sum())
+                            
+                            # Calcular los porcentajes
+                            porcentaje_urbano = (residuos_urbanos / residuos_totales) * 100
+                            porcentaje_rural = (residuos_rurales / residuos_totales) * 100
+                            
+                            # Agregar los porcentajes al mensaje
+                            mensaje += f"\nÁreas urbanas: {porcentaje_urbano:.2f}%."
+                            mensaje += f"\nÁreas rurales: {porcentaje_rural:.2f}%. "
+                    
+            # Mostrar el mensaje final
             self.ui.text_res.setPlainText(mensaje)
-
-        else:
-            self.ui.text_res.setPlainText("No se pudieron cargar los datos.")
 
     def ir_a_page2(self):
         """Cambiar a la página 'page2'"""
