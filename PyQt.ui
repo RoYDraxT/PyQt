@@ -11,7 +11,10 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Trabajo Final</string>
+  </property>
+  <property name="windowOpacity">
+   <double>1.000000000000000</double>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -237,7 +240,7 @@ border-radius:20px;
               <widget class="QStackedWidget" name="stackedWidget">
                <property name="styleSheet">
                 <string notr="true">QFrame {
-    background-color: #f7f7f7; /* Fondo gris claro */
+    background-color: transparent; /* Fondo gris claro */
     border: 1px solid #dcdcdc; /* Borde gris claro */
     padding: 10px; /* Espaciado interno */;
     border: 0px; /* Sin bordes */;
@@ -463,8 +466,8 @@ QPushButton:hover {
                  <widget class="QPushButton" name="bt_limpiar">
                   <property name="geometry">
                    <rect>
-                    <x>10</x>
-                    <y>370</y>
+                    <x>20</x>
+                    <y>330</y>
                     <width>120</width>
                     <height>30</height>
                    </rect>
@@ -478,31 +481,6 @@ QPushButton:hover {
                   <property name="text">
                    <string>Limpiar</string>
                   </property>
-                 </widget>
-                 <widget class="QComboBox" name="reg_box">
-                  <property name="geometry">
-                   <rect>
-                    <x>100</x>
-                    <y>70</y>
-                    <width>81</width>
-                    <height>22</height>
-                   </rect>
-                  </property>
-                  <item>
-                   <property name="text">
-                    <string>Costa</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>Sierra</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>Selva</string>
-                   </property>
-                  </item>
                  </widget>
                  <widget class="QPlainTextEdit" name="region">
                   <property name="geometry">
@@ -522,7 +500,7 @@ QPushButton:hover {
                    </font>
                   </property>
                   <property name="plainText">
-                   <string>Región</string>
+                   <string>Región:</string>
                   </property>
                  </widget>
                  <widget class="QPushButton" name="bt_ejecutar">
@@ -542,6 +520,308 @@ QPushButton:hover {
                   </property>
                   <property name="text">
                    <string>Ejecutar</string>
+                  </property>
+                 </widget>
+                 <widget class="QPlainTextEdit" name="anio">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>280</y>
+                    <width>91</width>
+                    <height>49</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Arial</family>
+                    <pointsize>11</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="plainText">
+                   <string>Año:</string>
+                  </property>
+                 </widget>
+                 <widget class="QComboBox" name="anio_box">
+                  <property name="geometry">
+                   <rect>
+                    <x>80</x>
+                    <y>290</y>
+                    <width>81</width>
+                    <height>20</height>
+                   </rect>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>Todos</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>2014</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>2015</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>2016</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>2017</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>2018</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>2019</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>2020</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>2021</string>
+                   </property>
+                  </item>
+                 </widget>
+                 <widget class="QCheckBox" name="costa">
+                  <property name="geometry">
+                   <rect>
+                    <x>30</x>
+                    <y>100</y>
+                    <width>80</width>
+                    <height>17</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>Costa</string>
+                  </property>
+                 </widget>
+                 <widget class="QCheckBox" name="sierra">
+                  <property name="geometry">
+                   <rect>
+                    <x>30</x>
+                    <y>120</y>
+                    <width>80</width>
+                    <height>17</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>Cierra</string>
+                  </property>
+                 </widget>
+                 <widget class="QCheckBox" name="selva">
+                  <property name="geometry">
+                   <rect>
+                    <x>30</x>
+                    <y>140</y>
+                    <width>80</width>
+                    <height>17</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>Selva</string>
+                  </property>
+                 </widget>
+                 <widget class="QPlainTextEdit" name="departamento">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>240</y>
+                    <width>141</width>
+                    <height>49</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Arial</family>
+                    <pointsize>11</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="plainText">
+                   <string>Departamento:</string>
+                  </property>
+                 </widget>
+                 <widget class="QComboBox" name="departamento_box">
+                  <property name="geometry">
+                   <rect>
+                    <x>140</x>
+                    <y>250</y>
+                    <width>81</width>
+                    <height>20</height>
+                   </rect>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>Todos</string>
+                   </property>
+                  </item>
+                 </widget>
+                 <widget class="QCheckBox" name="rural">
+                  <property name="geometry">
+                   <rect>
+                    <x>30</x>
+                    <y>200</y>
+                    <width>80</width>
+                    <height>17</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>Rural</string>
+                  </property>
+                 </widget>
+                 <widget class="QPlainTextEdit" name="tipo_poblacion">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>160</y>
+                    <width>161</width>
+                    <height>51</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Arial</family>
+                    <pointsize>11</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="plainText">
+                   <string>Tipo de Población:</string>
+                  </property>
+                 </widget>
+                 <widget class="QCheckBox" name="urbana">
+                  <property name="geometry">
+                   <rect>
+                    <x>30</x>
+                    <y>220</y>
+                    <width>80</width>
+                    <height>17</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>Urbana</string>
+                  </property>
+                 </widget>
+                 <zorder>tipo_poblacion</zorder>
+                 <zorder>bt_view</zorder>
+                 <zorder>bt_limpiar</zorder>
+                 <zorder>region</zorder>
+                 <zorder>bt_ejecutar</zorder>
+                 <zorder>anio</zorder>
+                 <zorder>anio_box</zorder>
+                 <zorder>costa</zorder>
+                 <zorder>sierra</zorder>
+                 <zorder>selva</zorder>
+                 <zorder>departamento</zorder>
+                 <zorder>departamento_box</zorder>
+                 <zorder>rural</zorder>
+                 <zorder>urbana</zorder>
+                </widget>
+                <widget class="QFrame" name="frame_grafc">
+                 <property name="geometry">
+                  <rect>
+                   <x>260</x>
+                   <y>210</y>
+                   <width>301</width>
+                   <height>231</height>
+                  </rect>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <widget class="QLabel" name="grafica">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>0</y>
+                    <width>101</width>
+                    <height>41</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>Gráfica</string>
+                  </property>
+                 </widget>
+                 <widget class="QWidget" name="verticalLayoutWidget">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>40</y>
+                    <width>281</width>
+                    <height>181</height>
+                   </rect>
+                  </property>
+                  <layout class="QVBoxLayout" name="grafica_box"/>
+                 </widget>
+                </widget>
+                <widget class="QPlainTextEdit" name="resultado">
+                 <property name="geometry">
+                  <rect>
+                   <x>270</x>
+                   <y>0</y>
+                   <width>151</width>
+                   <height>61</height>
+                  </rect>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Arial Black</family>
+                   <pointsize>12</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="plainText">
+                  <string>Resultado</string>
+                 </property>
+                </widget>
+                <widget class="QFrame" name="frame_res_2">
+                 <property name="geometry">
+                  <rect>
+                   <x>270</x>
+                   <y>40</y>
+                   <width>291</width>
+                   <height>161</height>
+                  </rect>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <widget class="QPlainTextEdit" name="text_res">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>10</y>
+                    <width>261</width>
+                    <height>141</height>
+                   </rect>
+                  </property>
+                  <property name="plainText">
+                   <string/>
                   </property>
                  </widget>
                 </widget>

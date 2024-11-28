@@ -1,11 +1,11 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QComboBox, QListWidget, QVBoxLayout, QPushButton, QDialog, QDialogButtonBox
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QTableWidgetItem
 from PyQtUI import Ui_MainWindow  # Importa la clase generada
 
 # Importar el archivo de lectura
-from lectura import cargar_datos
+from procesos import cargar_datos
 
 class MainApp(QMainWindow):
     def __init__(self):
@@ -24,10 +24,38 @@ class MainApp(QMainWindow):
         self.ui.bt_cerrar.clicked.connect(self.close)
         self.ui.bt_exp.clicked.connect(self.toggle_fullscreen)
         self.ui.bt_min.clicked.connect(self.showMinimized)
-        
+        self.ui.bt_ejecutar.clicked.connect(self.ejecutar_funcion)
+        self.ui.bt_limpiar.clicked.connect(self.limpiar_filtros)
+
         # Ocultar el botón `bt_cont`
         self.ui.bt_cont.setVisible(False)
     
+    def ejecutar_funcion(self):
+        """
+        Maneja la funcionalidad del botón ejecutar.
+        """
+        # Mostrar "funcionando" en el cuadro de texto del frame frame_res_2
+        self.ui.text_res.setPlainText("Funcionando")
+
+    def limpiar_filtros(self):
+        """
+        Restablece los filtros y limpia el cuadro de resultados.
+        """        
+        # Restablecer valores de ComboBox
+        self.ui.anio_box.setCurrentIndex(0)  # Selecciona la opción "Todos" en 'anio_box'
+        self.ui.departamento_box.setCurrentIndex(0)  # Selecciona la opción "Todos" en 'anio_box'
+
+        # Desmarcar todos los checkboxes (incluyendo Sierra)
+        self.ui.costa.setChecked(False)
+        self.ui.selva.setChecked(False)
+        self.ui.rural.setChecked(False)
+        self.ui.urbana.setChecked(False)
+        self.ui.sierra.setChecked(False)  # Desmarcar el checkbox de Sierra
+
+        # Limpiar el cuadro de resultados
+        self.ui.text_res.setPlainText("")  # Limpiar el resultado
+
+
     def ir_a_page2(self):
         """Cambiar a la página 'page2'"""
         self.ui.stackedWidget.setCurrentIndex(1)  # El índice 1 corresponde a la página 'page2'
