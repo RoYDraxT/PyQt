@@ -17,14 +17,20 @@ class MainApp(QMainWindow):
         self.ui.stackedWidget.setCurrentIndex(0)  # Asegura que la página inicial sea 'page'
         
         # Conectar los botones
+        self.ui.bt_ana.clicked.connect(self.ir_a_page2)
         self.ui.bt_view.clicked.connect(self.mostrar_datos)
-        self.ui.bt_regresar.clicked.connect(self.regresar_a_page)
+        self.ui.bt_regresar1.clicked.connect(self.regresar_a_page)
+        self.ui.bt_regresar2.clicked.connect(self.regresar_a_page2)
         self.ui.bt_cerrar.clicked.connect(self.close)
         self.ui.bt_exp.clicked.connect(self.toggle_fullscreen)
         self.ui.bt_min.clicked.connect(self.showMinimized)
         
         # Ocultar el botón `bt_cont`
         self.ui.bt_cont.setVisible(False)
+    
+    def ir_a_page2(self):
+        """Cambiar a la página 'page2'"""
+        self.ui.stackedWidget.setCurrentIndex(1)  # El índice 1 corresponde a la página 'page2'
     
     def mostrar_datos(self):
         """Carga y muestra los datos en la tabla y cambia a la página 'view'"""
@@ -40,8 +46,12 @@ class MainApp(QMainWindow):
         self.ui.stackedWidget.setCurrentIndex(2)  # El índice 2 corresponde a la página 'view'
     
     def regresar_a_page(self):
-        """Regresar a la página principal"""
+        """Regresar a la página 'page'"""
         self.ui.stackedWidget.setCurrentIndex(0)  # El índice 0 corresponde a la página 'page'
+    
+    def regresar_a_page2(self):
+        """Regresar a la página 'page2'"""
+        self.ui.stackedWidget.setCurrentIndex(1)  # El índice 1 corresponde a la página 'page2'
     
     def toggle_fullscreen(self):
         """Alternar pantalla completa"""

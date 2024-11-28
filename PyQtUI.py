@@ -110,49 +110,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.body)
         self.horizontalLayout_2.setContentsMargins(1, 1, 1, 1)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.frame_filtro = QtWidgets.QFrame(self.body)
-        self.frame_filtro.setMinimumSize(QtCore.QSize(250, 0))
-        self.frame_filtro.setMaximumSize(QtCore.QSize(0, 16777215))
-        self.frame_filtro.setStyleSheet("QFrame {\n"
-"    background-color: rgb(255,255,255);\n"
-"    border-radius: 15px; /* Para esquinas redondeadas */\n"
-"}\n"
-"\n"
-"QPushButton {\n"
-"    background-color: rgb(222,222,222); /* Color inicial del botón */\n"
-"    border-top-left-radius: 20px;\n"
-"    border-bottom-left-radius: 20px;\n"
-"    color: rgb(61,61,61); /* Texto oscuro */\n"
-"    font: 22 10pt \"Arial Black\"; /* Fuente corregida (font en lugar de front) */\n"
-"    border-radius: 15px; /* Para esquinas redondeadas */\n"
-"\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: rgb(200,200,200); /* Color ligeramente más oscuro al pasar el mouse */\n"
-"    border-top-left-radius: 20px;\n"
-"    border-bottom-left-radius: 20px;\n"
-"    color: rgb(61,61,61); /* Mismo color de texto */\n"
-"    font: 22 10pt \"Arial Black\";\n"
-"    border-radius: 15px; /* Para esquinas redondeadas */\n"
-"\n"
-"}\n"
-"")
-        self.frame_filtro.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_filtro.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_filtro.setObjectName("frame_filtro")
-        self.bt_view = QtWidgets.QPushButton(self.frame_filtro)
-        self.bt_view.setGeometry(QtCore.QRect(50, 10, 141, 31))
-        self.bt_view.setObjectName("bt_view")
-        self.bt_ejecutar = QtWidgets.QPushButton(self.frame_filtro)
-        self.bt_ejecutar.setGeometry(QtCore.QRect(120, 470, 120, 30))
-        self.bt_ejecutar.setMinimumSize(QtCore.QSize(120, 30))
-        self.bt_ejecutar.setObjectName("bt_ejecutar")
-        self.bt_limpiar = QtWidgets.QPushButton(self.frame_filtro)
-        self.bt_limpiar.setGeometry(QtCore.QRect(10, 350, 120, 30))
-        self.bt_limpiar.setMinimumSize(QtCore.QSize(120, 30))
-        self.bt_limpiar.setObjectName("bt_limpiar")
-        self.horizontalLayout_2.addWidget(self.frame_filtro)
         self.frame_res = QtWidgets.QFrame(self.body)
         self.frame_res.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_res.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -161,7 +118,10 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.stackedWidget = QtWidgets.QStackedWidget(self.frame_res)
         self.stackedWidget.setStyleSheet("QFrame {\n"
-"    background-color: rgb(61,61,61); /* Fondo gris oscuro */\n"
+"    background-color: #f7f7f7; /* Fondo gris claro */\n"
+"    border: 1px solid #dcdcdc; /* Borde gris claro */\n"
+"    padding: 10px; /* Espaciado interno */;\n"
+"    border: 0px; /* Sin bordes */;\n"
 "}\n"
 "\n"
 "QLabel {\n"
@@ -219,28 +179,109 @@ class Ui_MainWindow(object):
         self.stackedWidget.setObjectName("stackedWidget")
         self.page = QtWidgets.QWidget()
         self.page.setObjectName("page")
+        self.title = QtWidgets.QLabel(self.page)
+        self.title.setGeometry(QtCore.QRect(0, -10, 351, 41))
+        self.title.setObjectName("title")
+        self.text1 = QtWidgets.QPlainTextEdit(self.page)
+        self.text1.setGeometry(QtCore.QRect(0, 30, 711, 81))
+        self.text1.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.text1.setObjectName("text1")
+        self.text2 = QtWidgets.QPlainTextEdit(self.page)
+        self.text2.setGeometry(QtCore.QRect(0, 120, 711, 101))
+        self.text2.setObjectName("text2")
+        self.text3 = QtWidgets.QPlainTextEdit(self.page)
+        self.text3.setGeometry(QtCore.QRect(0, 230, 711, 121))
+        self.text3.setObjectName("text3")
+        self.text4 = QtWidgets.QPlainTextEdit(self.page)
+        self.text4.setGeometry(QtCore.QRect(0, 360, 711, 61))
+        self.text4.setObjectName("text4")
+        self.bt_ana = QtWidgets.QPushButton(self.page)
+        self.bt_ana.setGeometry(QtCore.QRect(580, 430, 131, 31))
+        self.bt_ana.setObjectName("bt_ana")
         self.stackedWidget.addWidget(self.page)
         self.page_2 = QtWidgets.QWidget()
         self.page_2.setObjectName("page_2")
+        self.frame_filtro = QtWidgets.QFrame(self.page_2)
+        self.frame_filtro.setGeometry(QtCore.QRect(-10, -20, 250, 491))
+        self.frame_filtro.setMinimumSize(QtCore.QSize(250, 0))
+        self.frame_filtro.setMaximumSize(QtCore.QSize(0, 16777215))
+        self.frame_filtro.setStyleSheet("QFrame {\n"
+"    background-color: rgb(255,255,255);\n"
+"    border-radius: 15px; /* Para esquinas redondeadas */\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"    background-color: rgb(222,222,222); /* Color inicial del botón */\n"
+"    border-top-left-radius: 20px;\n"
+"    border-bottom-left-radius: 20px;\n"
+"    color: rgb(61,61,61); /* Texto oscuro */\n"
+"    font: 22 10pt \"Arial Black\"; /* Fuente corregida (font en lugar de front) */\n"
+"    border-radius: 15px; /* Para esquinas redondeadas */\n"
+"\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(200,200,200); /* Color ligeramente más oscuro al pasar el mouse */\n"
+"    border-top-left-radius: 20px;\n"
+"    border-bottom-left-radius: 20px;\n"
+"    color: rgb(61,61,61); /* Mismo color de texto */\n"
+"    font: 22 10pt \"Arial Black\";\n"
+"    border-radius: 15px; /* Para esquinas redondeadas */\n"
+"\n"
+"}\n"
+"")
+        self.frame_filtro.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_filtro.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_filtro.setObjectName("frame_filtro")
+        self.bt_view = QtWidgets.QPushButton(self.frame_filtro)
+        self.bt_view.setGeometry(QtCore.QRect(50, 30, 141, 31))
+        self.bt_view.setObjectName("bt_view")
+        self.bt_limpiar = QtWidgets.QPushButton(self.frame_filtro)
+        self.bt_limpiar.setGeometry(QtCore.QRect(10, 370, 120, 30))
+        self.bt_limpiar.setMinimumSize(QtCore.QSize(120, 30))
+        self.bt_limpiar.setObjectName("bt_limpiar")
+        self.reg_box = QtWidgets.QComboBox(self.frame_filtro)
+        self.reg_box.setGeometry(QtCore.QRect(100, 70, 81, 22))
+        self.reg_box.setObjectName("reg_box")
+        self.reg_box.addItem("")
+        self.reg_box.addItem("")
+        self.reg_box.addItem("")
+        self.region = QtWidgets.QPlainTextEdit(self.frame_filtro)
+        self.region.setGeometry(QtCore.QRect(10, 60, 91, 51))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(11)
+        font.setBold(False)
+        font.setWeight(50)
+        self.region.setFont(font)
+        self.region.setObjectName("region")
+        self.bt_ejecutar = QtWidgets.QPushButton(self.frame_filtro)
+        self.bt_ejecutar.setGeometry(QtCore.QRect(120, 450, 120, 30))
+        self.bt_ejecutar.setMinimumSize(QtCore.QSize(120, 30))
+        self.bt_ejecutar.setObjectName("bt_ejecutar")
+        self.bt_regresar1 = QtWidgets.QPushButton(self.page_2)
+        self.bt_regresar1.setGeometry(QtCore.QRect(610, 440, 120, 30))
+        self.bt_regresar1.setMinimumSize(QtCore.QSize(120, 30))
+        self.bt_regresar1.setObjectName("bt_regresar1")
         self.stackedWidget.addWidget(self.page_2)
         self.view = QtWidgets.QWidget()
         self.view.setObjectName("view")
         self.gridLayout = QtWidgets.QGridLayout(self.view)
         self.gridLayout.setObjectName("gridLayout")
-        self.label = QtWidgets.QLabel(self.view)
-        self.label.setObjectName("label")
-        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
-        self.bt_regresar = QtWidgets.QPushButton(self.view)
-        self.bt_regresar.setMinimumSize(QtCore.QSize(120, 30))
-        self.bt_regresar.setObjectName("bt_regresar")
-        self.gridLayout.addWidget(self.bt_regresar, 2, 1, 1, 1)
-        spacerItem = QtWidgets.QSpacerItem(351, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.bt_regresar2 = QtWidgets.QPushButton(self.view)
+        self.bt_regresar2.setMinimumSize(QtCore.QSize(120, 30))
+        self.bt_regresar2.setObjectName("bt_regresar2")
+        self.gridLayout.addWidget(self.bt_regresar2, 2, 1, 1, 1)
+        spacerItem = QtWidgets.QSpacerItem(587, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem, 2, 0, 1, 1)
         self.tabla_datos = QtWidgets.QTableWidget(self.view)
         self.tabla_datos.setObjectName("tabla_datos")
         self.tabla_datos.setColumnCount(0)
         self.tabla_datos.setRowCount(0)
         self.gridLayout.addWidget(self.tabla_datos, 1, 0, 1, 2)
+        self.label = QtWidgets.QLabel(self.view)
+        self.label.setObjectName("label")
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
         self.stackedWidget.addWidget(self.view)
         self.verticalLayout_3.addWidget(self.stackedWidget)
         self.horizontalLayout_2.addWidget(self.frame_res)
@@ -251,18 +292,39 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.uni.setPlainText(_translate("MainWindow", "Universidad San Ignacio de Loyola"))
+        self.title.setText(_translate("MainWindow", "Gestión de Residuos Sólidos en Perú"))
+        self.text1.setPlainText(_translate("MainWindow", "La gestión de residuos sólidos es uno de los mayores desafíos ambientales en Perú. A pesar de los esfuerzos actuales, una gran parte de los residuos no se maneja adecuadamente, lo que genera problemas de contaminación en suelos, agua y aire. Este proyecto propone el uso de tecnologías emergentes como Big Data, Machine Learning, Power BI y Python para optimizar la recolección, disposición y tratamiento de residuos sólidos."))
+        self.text2.setPlainText(_translate("MainWindow", "Objetivos Clave:\n"
+"\n"
+"- Fortalecer la gestión de residuos sólidos con un enfoque metodológico, promoviendo la adecuada disposición y reciclaje.\n"
+"\n"
+"- Implementar un sistema integral de análisis de datos para identificar áreas prioritarias y mejorar la eficiencia de los rellenos sanitarios."))
+        self.text3.setPlainText(_translate("MainWindow", "Soluciones Propuestas:\n"
+"\n"
+"- Recolección y disposición adecuada: Sistemas eficientes que aseguren la disposición final segura de residuos.\n"
+"\n"
+"- Monitoreo en tiempo real: Uso de sensores y tecnologías para optimizar rutas y reducir costos operativos.\n"
+"\n"
+"- Visualización de datos: Herramientas como PyQt5 para apoyar la toma de decisiones informadas."))
+        self.text4.setPlainText(_translate("MainWindow", "Una gestión adecuada de residuos no solo reduce la contaminación y los riesgos para la salud pública, sino que también fomenta el desarrollo sostenible y puede crear empleos e ingresos adicionales."))
+        self.bt_ana.setText(_translate("MainWindow", "Realizar Análisis"))
         self.bt_view.setText(_translate("MainWindow", "View Data"))
-        self.bt_ejecutar.setText(_translate("MainWindow", "Ejecutar"))
         self.bt_limpiar.setText(_translate("MainWindow", "Limpiar"))
+        self.reg_box.setItemText(0, _translate("MainWindow", "Costa"))
+        self.reg_box.setItemText(1, _translate("MainWindow", "Sierra"))
+        self.reg_box.setItemText(2, _translate("MainWindow", "Selva"))
+        self.region.setPlainText(_translate("MainWindow", "Región"))
+        self.bt_ejecutar.setText(_translate("MainWindow", "Ejecutar"))
+        self.bt_regresar1.setText(_translate("MainWindow", "Regresar"))
+        self.bt_regresar2.setText(_translate("MainWindow", "Regresar"))
         self.label.setText(_translate("MainWindow", "DATOS"))
-        self.bt_regresar.setText(_translate("MainWindow", "Regresar"))
 
 
 if __name__ == "__main__":

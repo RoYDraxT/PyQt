@@ -225,106 +225,6 @@ border-radius:20px;
            <number>1</number>
           </property>
           <item>
-           <widget class="QFrame" name="frame_filtro">
-            <property name="minimumSize">
-             <size>
-              <width>250</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>0</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QFrame {
-    background-color: rgb(255,255,255);
-    border-radius: 15px; /* Para esquinas redondeadas */
-}
-
-QPushButton {
-    background-color: rgb(222,222,222); /* Color inicial del botón */
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    color: rgb(61,61,61); /* Texto oscuro */
-    font: 22 10pt &quot;Arial Black&quot;; /* Fuente corregida (font en lugar de front) */
-    border-radius: 15px; /* Para esquinas redondeadas */
-
-}
-
-QPushButton:hover {
-    background-color: rgb(200,200,200); /* Color ligeramente más oscuro al pasar el mouse */
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    color: rgb(61,61,61); /* Mismo color de texto */
-    font: 22 10pt &quot;Arial Black&quot;;
-    border-radius: 15px; /* Para esquinas redondeadas */
-
-}
-</string>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <widget class="QPushButton" name="bt_view">
-             <property name="geometry">
-              <rect>
-               <x>50</x>
-               <y>10</y>
-               <width>141</width>
-               <height>31</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>View Data</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="bt_ejecutar">
-             <property name="geometry">
-              <rect>
-               <x>120</x>
-               <y>470</y>
-               <width>120</width>
-               <height>30</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>120</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Ejecutar</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="bt_limpiar">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>350</y>
-               <width>120</width>
-               <height>30</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>120</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Limpiar</string>
-             </property>
-            </widget>
-           </widget>
-          </item>
-          <item>
            <widget class="QFrame" name="frame_res">
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
@@ -337,7 +237,10 @@ QPushButton:hover {
               <widget class="QStackedWidget" name="stackedWidget">
                <property name="styleSheet">
                 <string notr="true">QFrame {
-    background-color: rgb(61,61,61); /* Fondo gris oscuro */
+    background-color: #f7f7f7; /* Fondo gris claro */
+    border: 1px solid #dcdcdc; /* Borde gris claro */
+    padding: 10px; /* Espaciado interno */;
+    border: 0px; /* Sin bordes */;
 }
 
 QLabel {
@@ -394,21 +297,278 @@ QTableWidget QTableCornerButton::section {
 </string>
                </property>
                <property name="currentIndex">
-                <number>2</number>
+                <number>1</number>
                </property>
-               <widget class="QWidget" name="page"/>
-               <widget class="QWidget" name="page_2"/>
+               <widget class="QWidget" name="page">
+                <widget class="QLabel" name="title">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>-10</y>
+                   <width>351</width>
+                   <height>41</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>Gestión de Residuos Sólidos en Perú</string>
+                 </property>
+                </widget>
+                <widget class="QPlainTextEdit" name="text1">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>30</y>
+                   <width>711</width>
+                   <height>81</height>
+                  </rect>
+                 </property>
+                 <property name="layoutDirection">
+                  <enum>Qt::LeftToRight</enum>
+                 </property>
+                 <property name="plainText">
+                  <string>La gestión de residuos sólidos es uno de los mayores desafíos ambientales en Perú. A pesar de los esfuerzos actuales, una gran parte de los residuos no se maneja adecuadamente, lo que genera problemas de contaminación en suelos, agua y aire. Este proyecto propone el uso de tecnologías emergentes como Big Data, Machine Learning, Power BI y Python para optimizar la recolección, disposición y tratamiento de residuos sólidos.</string>
+                 </property>
+                </widget>
+                <widget class="QPlainTextEdit" name="text2">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>120</y>
+                   <width>711</width>
+                   <height>101</height>
+                  </rect>
+                 </property>
+                 <property name="plainText">
+                  <string>Objetivos Clave:
+
+- Fortalecer la gestión de residuos sólidos con un enfoque metodológico, promoviendo la adecuada disposición y reciclaje.
+
+- Implementar un sistema integral de análisis de datos para identificar áreas prioritarias y mejorar la eficiencia de los rellenos sanitarios.</string>
+                 </property>
+                </widget>
+                <widget class="QPlainTextEdit" name="text3">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>230</y>
+                   <width>711</width>
+                   <height>121</height>
+                  </rect>
+                 </property>
+                 <property name="plainText">
+                  <string>Soluciones Propuestas:
+
+- Recolección y disposición adecuada: Sistemas eficientes que aseguren la disposición final segura de residuos.
+
+- Monitoreo en tiempo real: Uso de sensores y tecnologías para optimizar rutas y reducir costos operativos.
+
+- Visualización de datos: Herramientas como PyQt5 para apoyar la toma de decisiones informadas.</string>
+                 </property>
+                </widget>
+                <widget class="QPlainTextEdit" name="text4">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>360</y>
+                   <width>711</width>
+                   <height>61</height>
+                  </rect>
+                 </property>
+                 <property name="plainText">
+                  <string>Una gestión adecuada de residuos no solo reduce la contaminación y los riesgos para la salud pública, sino que también fomenta el desarrollo sostenible y puede crear empleos e ingresos adicionales.</string>
+                 </property>
+                </widget>
+                <widget class="QPushButton" name="bt_ana">
+                 <property name="geometry">
+                  <rect>
+                   <x>580</x>
+                   <y>430</y>
+                   <width>131</width>
+                   <height>31</height>
+                  </rect>
+                 </property>
+                 <property name="text">
+                  <string>Realizar Análisis</string>
+                 </property>
+                </widget>
+               </widget>
+               <widget class="QWidget" name="page_2">
+                <widget class="QFrame" name="frame_filtro">
+                 <property name="geometry">
+                  <rect>
+                   <x>-10</x>
+                   <y>-20</y>
+                   <width>250</width>
+                   <height>491</height>
+                  </rect>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>250</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>0</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QFrame {
+    background-color: rgb(255,255,255);
+    border-radius: 15px; /* Para esquinas redondeadas */
+}
+
+QPushButton {
+    background-color: rgb(222,222,222); /* Color inicial del botón */
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color: rgb(61,61,61); /* Texto oscuro */
+    font: 22 10pt &quot;Arial Black&quot;; /* Fuente corregida (font en lugar de front) */
+    border-radius: 15px; /* Para esquinas redondeadas */
+
+}
+
+QPushButton:hover {
+    background-color: rgb(200,200,200); /* Color ligeramente más oscuro al pasar el mouse */
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color: rgb(61,61,61); /* Mismo color de texto */
+    font: 22 10pt &quot;Arial Black&quot;;
+    border-radius: 15px; /* Para esquinas redondeadas */
+
+}
+</string>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <widget class="QPushButton" name="bt_view">
+                  <property name="geometry">
+                   <rect>
+                    <x>50</x>
+                    <y>30</y>
+                    <width>141</width>
+                    <height>31</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>View Data</string>
+                  </property>
+                 </widget>
+                 <widget class="QPushButton" name="bt_limpiar">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>370</y>
+                    <width>120</width>
+                    <height>30</height>
+                   </rect>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>120</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Limpiar</string>
+                  </property>
+                 </widget>
+                 <widget class="QComboBox" name="reg_box">
+                  <property name="geometry">
+                   <rect>
+                    <x>100</x>
+                    <y>70</y>
+                    <width>81</width>
+                    <height>22</height>
+                   </rect>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>Costa</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Sierra</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Selva</string>
+                   </property>
+                  </item>
+                 </widget>
+                 <widget class="QPlainTextEdit" name="region">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>60</y>
+                    <width>91</width>
+                    <height>51</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Arial</family>
+                    <pointsize>11</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="plainText">
+                   <string>Región</string>
+                  </property>
+                 </widget>
+                 <widget class="QPushButton" name="bt_ejecutar">
+                  <property name="geometry">
+                   <rect>
+                    <x>120</x>
+                    <y>450</y>
+                    <width>120</width>
+                    <height>30</height>
+                   </rect>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>120</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Ejecutar</string>
+                  </property>
+                 </widget>
+                </widget>
+                <widget class="QPushButton" name="bt_regresar1">
+                 <property name="geometry">
+                  <rect>
+                   <x>610</x>
+                   <y>440</y>
+                   <width>120</width>
+                   <height>30</height>
+                  </rect>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>120</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Regresar</string>
+                 </property>
+                </widget>
+               </widget>
                <widget class="QWidget" name="view">
                 <layout class="QGridLayout" name="gridLayout">
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="label">
-                   <property name="text">
-                    <string>DATOS</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="2" column="1">
-                  <widget class="QPushButton" name="bt_regresar">
+                  <widget class="QPushButton" name="bt_regresar2">
                    <property name="minimumSize">
                     <size>
                      <width>120</width>
@@ -427,7 +587,7 @@ QTableWidget QTableCornerButton::section {
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
-                     <width>351</width>
+                     <width>587</width>
                      <height>20</height>
                     </size>
                    </property>
@@ -435,6 +595,13 @@ QTableWidget QTableCornerButton::section {
                  </item>
                  <item row="1" column="0" colspan="2">
                   <widget class="QTableWidget" name="tabla_datos"/>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label">
+                   <property name="text">
+                    <string>DATOS</string>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </widget>
