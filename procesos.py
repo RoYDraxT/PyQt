@@ -71,19 +71,19 @@ def calcular_residuos_por_ano_seleccionado(datos_agrupados, año_seleccionado=No
     """
     if departamento_seleccionado is not None:
         # Filtrar los datos por el departamento seleccionado
-        datos_agrupados = datos_agrupados[datos_agrupados['DEPARTAMENTO'] == departamento_seleccionado]
+        datos_agrupados = round((datos_agrupados[datos_agrupados['DEPARTAMENTO'] == departamento_seleccionado]),2)
 
     if año_seleccionado is not None:
         # Filtrar los datos por el año seleccionado
-        residuos_por_ano = datos_agrupados[datos_agrupados['PERIODO'] == año_seleccionado]
+        residuos_por_ano = round((datos_agrupados[datos_agrupados['PERIODO'] == año_seleccionado]),2)
         
         # Sumar los residuos de ese año y departamento
-        residuos_totales = residuos_por_ano['QRESIDUOS_DOM'].sum()
+        residuos_totales = round((residuos_por_ano['QRESIDUOS_DOM'].sum()),2)
         
         return residuos_totales
     else:
         # Si no se seleccionó un año específico, calcular el promedio de residuos
-        residuos_totales = datos_agrupados['QRESIDUOS_DOM'].sum()
+        residuos_totales = round((datos_agrupados['QRESIDUOS_DOM'].sum()),2)
         total_anos = len(datos_agrupados['PERIODO'].unique())
         
         # Calcular el promedio de residuos

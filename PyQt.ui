@@ -799,46 +799,6 @@ QPushButton:hover {
                   </item>
                  </widget>
                 </widget>
-                <widget class="QFrame" name="frame_grafc">
-                 <property name="geometry">
-                  <rect>
-                   <x>260</x>
-                   <y>250</y>
-                   <width>211</width>
-                   <height>191</height>
-                  </rect>
-                 </property>
-                 <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Raised</enum>
-                 </property>
-                 <widget class="QLabel" name="grafica">
-                  <property name="geometry">
-                   <rect>
-                    <x>10</x>
-                    <y>0</y>
-                    <width>101</width>
-                    <height>41</height>
-                   </rect>
-                  </property>
-                  <property name="text">
-                   <string>Gráfica</string>
-                  </property>
-                 </widget>
-                 <widget class="QWidget" name="verticalLayoutWidget">
-                  <property name="geometry">
-                   <rect>
-                    <x>10</x>
-                    <y>40</y>
-                    <width>191</width>
-                    <height>141</height>
-                   </rect>
-                  </property>
-                  <layout class="QVBoxLayout" name="grafica_box"/>
-                 </widget>
-                </widget>
                 <widget class="QPlainTextEdit" name="resultado">
                  <property name="geometry">
                   <rect>
