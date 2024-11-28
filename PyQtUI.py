@@ -48,8 +48,24 @@ class Ui_MainWindow(object):
         self.head.setObjectName("head")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.head)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        spacerItem = QtWidgets.QSpacerItem(571, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout.addItem(spacerItem)
+        self.uni = QtWidgets.QPlainTextEdit(self.head)
+        font = QtGui.QFont()
+        font.setFamily("Arial Black")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.uni.setFont(font)
+        self.uni.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.uni.setAcceptDrops(False)
+        self.uni.setStyleSheet("QPlainTextEdit {\n"
+"    border: 0px; /* Sin borde */\n"
+"    font-size: 12pt; /* Tamaño de letra aumentado */\n"
+"    text-align: center; /* Centrar el texto */\n"
+"    padding: 5px; /* Añadir un poco de espacio alrededor del texto */\n"
+"}\n"
+"")
+        self.uni.setObjectName("uni")
+        self.horizontalLayout.addWidget(self.uni)
         self.bt_min = QtWidgets.QPushButton(self.head)
         self.bt_min.setMinimumSize(QtCore.QSize(40, 40))
         self.bt_min.setText("")
@@ -218,8 +234,8 @@ class Ui_MainWindow(object):
         self.bt_regresar.setMinimumSize(QtCore.QSize(120, 30))
         self.bt_regresar.setObjectName("bt_regresar")
         self.gridLayout.addWidget(self.bt_regresar, 2, 1, 1, 1)
-        spacerItem1 = QtWidgets.QSpacerItem(351, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem1, 2, 0, 1, 1)
+        spacerItem = QtWidgets.QSpacerItem(351, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem, 2, 0, 1, 1)
         self.tabla_datos = QtWidgets.QTableWidget(self.view)
         self.tabla_datos.setObjectName("tabla_datos")
         self.tabla_datos.setColumnCount(0)
@@ -241,6 +257,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.uni.setPlainText(_translate("MainWindow", "Universidad San Ignacio de Loyola"))
         self.bt_view.setText(_translate("MainWindow", "View Data"))
         self.bt_ejecutar.setText(_translate("MainWindow", "Ejecutar"))
         self.bt_limpiar.setText(_translate("MainWindow", "Limpiar"))

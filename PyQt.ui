@@ -79,17 +79,34 @@ border-radius:20px;
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <spacer name="spacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+           <widget class="QPlainTextEdit" name="uni">
+            <property name="font">
+             <font>
+              <family>Arial Black</family>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
             </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>571</width>
-              <height>20</height>
-             </size>
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
             </property>
-           </spacer>
+            <property name="acceptDrops">
+             <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPlainTextEdit {
+    border: 0px; /* Sin borde */
+    font-size: 12pt; /* Tamaño de letra aumentado */
+    text-align: center; /* Centrar el texto */
+    padding: 5px; /* Añadir un poco de espacio alrededor del texto */
+}
+</string>
+            </property>
+            <property name="plainText">
+             <string>Universidad San Ignacio de Loyola</string>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QPushButton" name="bt_min">
@@ -104,7 +121,7 @@ border-radius:20px;
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>../Recursos/Upload/min3.png</normaloff>../Recursos/Upload/min3.png</iconset>
+              <normaloff>imagenes/min3.png</normaloff>imagenes/min3.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -127,7 +144,7 @@ border-radius:20px;
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>../Recursos/Upload/cont.png</normaloff>../Recursos/Upload/cont.png</iconset>
+              <normaloff>imagenes/cont.png</normaloff>imagenes/cont.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -150,7 +167,7 @@ border-radius:20px;
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>../Recursos/Upload/exp.png</normaloff>../Recursos/Upload/exp.png</iconset>
+              <normaloff>imagenes/exp.png</normaloff>imagenes/exp.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -173,7 +190,7 @@ border-radius:20px;
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>../Recursos/Upload/x-cf.png</normaloff>../Recursos/Upload/x-cf.png</iconset>
+              <normaloff>imagenes/x-cf.png</normaloff>imagenes/x-cf.png</iconset>
             </property>
             <property name="iconSize">
              <size>
