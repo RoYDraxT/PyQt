@@ -36,10 +36,7 @@
        <string notr="true">background-color: rgb(245, 245, 245);</string>
       </property>
       <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,8">
        <property name="leftMargin">
@@ -75,10 +72,7 @@ border-radius:20px;
 }</string>
          </property>
          <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
+          <enum>QFrame::NoFrame</enum>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
@@ -209,10 +203,7 @@ border-radius:20px;
        <item>
         <widget class="QFrame" name="body">
          <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
+          <enum>QFrame::NoFrame</enum>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <property name="leftMargin">
@@ -230,10 +221,7 @@ border-radius:20px;
           <item>
            <widget class="QFrame" name="frame_res">
             <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
+             <enum>QFrame::NoFrame</enum>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_3">
              <item>
@@ -445,10 +433,7 @@ QPushButton:hover {
 </string>
                  </property>
                  <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Raised</enum>
+                  <enum>QFrame::NoFrame</enum>
                  </property>
                  <widget class="QPushButton" name="bt_view">
                   <property name="geometry">
@@ -621,7 +606,7 @@ QPushButton:hover {
                    </rect>
                   </property>
                   <property name="text">
-                   <string>Cierra</string>
+                   <string>Sierra</string>
                   </property>
                  </widget>
                  <widget class="QCheckBox" name="selva">
@@ -830,10 +815,7 @@ QPushButton:hover {
                   </rect>
                  </property>
                  <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Raised</enum>
+                  <enum>QFrame::NoFrame</enum>
                  </property>
                  <widget class="QPlainTextEdit" name="text_res">
                   <property name="geometry">
@@ -897,9 +879,6 @@ QPushButton:hover {
                  </item>
                  <item row="2" column="0">
                   <spacer name="horizontalSpacer">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
                    <property name="sizeHint" stdset="0">
                     <size>
                      <width>587</width>
